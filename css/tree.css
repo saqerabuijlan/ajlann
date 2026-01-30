@@ -1,0 +1,270 @@
+/* Family Tree Styles - High Density & Connected Version */
+.tree-section {
+    background: radial-gradient(circle at center, #ffffff 0%, #fcf7e8 100%);
+    overflow-x: auto;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+/* Unified Tree Container */
+.full-tree-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Vertical Line - Much shorter for high density */
+.vertical-line {
+    width: 2px;
+    background: var(--color-accent);
+    height: 15px;
+    /* Compact height */
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Ancestor Node Styling - More Compact */
+.ancestor-node {
+    border: 1.2px solid var(--color-accent);
+    background: #fff;
+    padding: 4px 15px;
+    border-radius: 20px;
+    font-weight: 700;
+    color: var(--color-primary);
+    position: relative;
+    text-align: center;
+    min-width: 110px;
+    font-size: 0.8rem;
+    z-index: 2;
+    margin: 2px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.ancestor-node:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Branch Complex - Tight spacing */
+.branch-complex {
+    display: flex;
+    justify-content: center;
+    gap: 1.5cm;
+    /* Reduced horizontal gap */
+    position: relative;
+    padding-top: 15px;
+    /* Reduced vertical gap */
+}
+
+/* Horizontal Connector Line */
+.branch-complex::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--color-accent);
+    z-index: 1;
+}
+
+/* Helper for columns in the complex branch */
+.branch-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Connector from horizontal line down to node */
+.branch-col::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background: var(--color-accent);
+    z-index: 1;
+}
+
+.ancestor-node.prophet {
+    background: #000;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 6px 20px;
+}
+
+/* The Bottom Tree (Ajlan's Descendants) - Reconnected */
+.descendant-tree {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.descendant-tree ul {
+    padding-top: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Main Connector for Descendants Root */
+.descendant-tree>ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    width: 2px;
+    height: 15px;
+    z-index: 1;
+}
+
+.descendant-tree li {
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 15px 4px 0 4px;
+    margin: 0;
+}
+
+/* Hiding ALL connectors as per request */
+.vertical-line,
+.branch-complex::before,
+.branch-col::before,
+.descendant-tree>ul::before,
+.descendant-tree li::before,
+.descendant-tree li::after,
+.descendant-tree li>a::before,
+.descendant-tree ul ul::before {
+    display: none !important;
+}
+
+/* Horizontal line between specific names */
+.connect-horizontal {
+    position: relative;
+    display: flex;
+    /* Ensure horizontal layout items are aligned */
+    justify-content: center;
+}
+
+.connect-horizontal li::before,
+.connect-horizontal li::after {
+    content: '';
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 50%;
+    width: 50%;
+    height: 2px;
+    background: var(--color-accent);
+    z-index: 1;
+}
+
+.connect-horizontal li::after {
+    left: 50%;
+    right: auto;
+}
+
+.connect-horizontal li:first-child::before,
+.connect-horizontal li:last-child::after {
+    display: none !important;
+}
+
+.descendant-tree li::after {
+    left: 50%;
+    right: auto;
+}
+
+/* Vertical lines into each child */
+.descendant-tree li>a::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background: var(--color-accent);
+    z-index: 1;
+    display: block !important;
+}
+
+/* Hide branches for single/edge children */
+.descendant-tree li:only-child::before,
+.descendant-tree li:only-child::after {
+    display: none;
+}
+
+.descendant-tree li:first-child::before,
+.descendant-tree li:last-child::after {
+    display: none;
+}
+
+/* Nested vertical lines */
+.descendant-tree ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background: var(--color-accent);
+    display: block !important;
+}
+
+/* Shift logic */
+.shift-left {
+    margin-right: 4cm !important;
+}
+
+.shift-aqil {
+    margin-right: -2cm !important;
+}
+
+/* Child Nodes - Optimized Pill style */
+.child-node {
+    border: 1.2px solid var(--color-accent);
+    padding: 4px 12px;
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+    border-radius: 15px;
+    background: #fff;
+    min-width: 80px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.child-node:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.child-node.ajlan {
+    padding: 6px 20px;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.tree-container-wrapper {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    padding: 20px;
+    margin-top: 10px;
+}
